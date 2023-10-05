@@ -5,6 +5,9 @@ import RootPage from "./pages/RootPage";
 import MainPageLayout from "./layouts/MainPageLayout";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import NotificationPage from "./pages/Notification";
+import MyInfoPage from "./pages/MyInfoPage";
+import DeviceInfoPage from "./pages/DeviceInfoPage";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +21,12 @@ const router = createBrowserRouter([
   {
     path: "main",
     element: <MainPageLayout />,
-    children: [{ index: true, element: <MainPage /> }],
+    children: [
+      { index: true, element: <MainPage /> },
+      { path: "notification", element: <NotificationPage /> },
+      { path: "info", element: <MyInfoPage /> },
+      { path: ":id", element: <DeviceInfoPage /> },
+    ],
   },
 ]);
 

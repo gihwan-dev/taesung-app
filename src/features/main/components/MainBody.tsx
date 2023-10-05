@@ -4,7 +4,7 @@ import MainBodyItem from "./MainBodyItem";
 const MainBody = () => {
   const { data } = useDeviceInfo();
   return (
-    <ul className="flex flex-col gap-4 h-full overflow-auto px-6">
+    <ul className="flex flex-col gap-4 h-full px-6">
       {data?.map((device) => {
         return (
           <MainBodyItem
@@ -14,6 +14,9 @@ const MainBody = () => {
           />
         );
       })}
+      <button className="py-2 px-4 border border-gray-300 w-fit self-center bg-white rounded-full">
+        + 제품 추가하기
+      </button>
     </ul>
   );
 };
