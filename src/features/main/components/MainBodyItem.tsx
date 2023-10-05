@@ -2,6 +2,7 @@ import React from "react";
 import { useDeviceState } from "../hooks";
 import { getBatteryIcon } from "../utils/index";
 import { NavLink } from "react-router-dom";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const MainBodyItem: React.FC<{
   deviceName: string;
@@ -15,7 +16,11 @@ const MainBodyItem: React.FC<{
 
   return (
     <NavLink to={`${deviceId}`}>
-      <li className="w-full py-4 bg-white px-4 rounded-lg shadow-lg hover:scale-105">
+      <li className="w-full flex flex-row items-center justify-between gap-4 py-4 bg-white px-4 rounded-lg shadow-lg hover:scale-105">
+        <img
+          src="../device.png"
+          alt="device"
+        />
         <div className="flex flex-col gap-2">
           <p className="text-lg font-bold">{deviceName}</p>
           <div className="flex flex-row gap-4 justify-items-center">
@@ -35,6 +40,7 @@ const MainBodyItem: React.FC<{
             </p>
           </div>
         </div>
+        <MoreVertIcon />
       </li>
     </NavLink>
   );

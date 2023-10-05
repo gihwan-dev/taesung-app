@@ -33,7 +33,7 @@ const Selection = () => {
     <>
       <ul
         onClick={onClickHandler}
-        className="bg-slate-600 text-white font-semibold px-4 py-1 rounded-full"
+        className="bg-slate-500 text-white font-semibold px-4 py-1 rounded-full"
       >
         <li>
           {selected} <ExpandMoreIcon />
