@@ -6,7 +6,15 @@ const OtherSensorData = () => {
   const params = useParams();
   const id = Number(params.id);
 
-  const { data, isLoading } = useWeather(id);
+  const { data, isLoading, isError } = useWeather(id);
+
+  if (!data || data.length === 0) {
+    return <h1 className="text-center">수집된 날씨 데이터가 없습니다.</h1>;
+  }
+
+  if (isError) {
+    return null;
+  }
 
   if (isLoading) {
     return null;

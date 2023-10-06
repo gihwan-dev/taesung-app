@@ -26,7 +26,7 @@ const DeviceInfoPage = () => {
   }
 
   return (
-    <section className="w-full h-full">
+    <section className="w-full h-full overflow-hidden">
       <AppBar
         returnArrow
         selection

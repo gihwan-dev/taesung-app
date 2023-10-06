@@ -16,7 +16,7 @@ const MainBodyItem: React.FC<{
 
   return (
     <NavLink to={`${deviceId}`}>
-      <li className="w-full flex flex-row items-center justify-between gap-4 py-4 bg-white px-4 rounded-lg shadow-lg hover:scale-105">
+      <li className="w-full flex flex-row items-center justify-between gap-4 py-4 bg-white px-4 rounded-lg shadow-lg box-border hover:scale-105">
         <img
           src="../device.png"
           alt="device"

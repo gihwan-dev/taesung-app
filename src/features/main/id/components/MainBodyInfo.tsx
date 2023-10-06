@@ -18,10 +18,10 @@ const MainBodyInfo = () => {
 
   return (
     <section className="flex flex-col gap-4">
-      <HeadBattery batteryLevel={state.ds_bat} />
+      <HeadBattery batteryLevel={state?.ds_bat} />
       <OdorLevel
-        sdMos={sensor.sd_mos}
-        sdOu={sensor.sd_ou}
+        sdMos={sensor?.sd_mos}
+        sdOu={sensor?.sd_ou}
       />
       <OtherSensorData />
     </section>

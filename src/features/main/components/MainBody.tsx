@@ -4,7 +4,7 @@ import MainBodyItem from "./MainBodyItem";
 const MainBody = () => {
   const { data } = useDeviceInfo();
   return (
-    <ul className="flex flex-col gap-4 h-full px-6">
+    <ul className="flex flex-col gap-4 h-full px-6 box-border">
       {data?.map((device) => {
         return (
           <MainBodyItem

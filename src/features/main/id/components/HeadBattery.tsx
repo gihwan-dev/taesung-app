@@ -11,9 +11,15 @@ const HeadBattery: React.FC<{
   const { data: state, isLoading: stateLoading } = useDeviceState(
     params.id as string
   );
-  const { data: collectData, isLoading: collectLoading } = useDeviceCollect(
-    state.ds_collect
-  );
+  const {
+    data: collectData,
+    isLoading: collectLoading,
+    isError,
+  } = useDeviceCollect(state?.ds_collect);
+
+  if (isError) {
+    return null;
+  }
 
   if (stateLoading || collectLoading) {
     return null;
@@ -21,7 +27,7 @@ const HeadBattery: React.FC<{
 
   return (
     <div className="w-ful pt-6 flex flex-row justify-center items-center gap-4">
-      <p className="font-mono">{collectData.cc_name}</p>
+      <p className="font-mono">{collectData?.cc_name}</p>
       <div className="h-12 border"></div>
       <div className="flex flex-row gap-2">
         <div className="w-fit rotate-90">{getBatteryIcon(batteryLevel)}</div>

@@ -5,11 +5,30 @@ import InfoIcon from "@mui/icons-material/Info";
 const OdorLevelChart = ({ value }) => {
   ChartJS.register(ArcElement, Tooltip, Legend);
 
+  const getColor = () => {
+    switch (value) {
+      case 0:
+        return "#fa6055";
+      case 1:
+        return "#fa6055";
+      case 2:
+        return "#fa6055";
+      case 3:
+        return "#4d4d4d";
+      case 4:
+        return "#336699";
+      case 5:
+        return "#336699";
+      default:
+        return "#336699";
+    }
+  };
+
   const data = {
     datasets: [
       {
         data: [value, 5 - value],
-        backgroundColor: ["#336699", "#666666"],
+        backgroundColor: [getColor(), "#cccccc"],
         display: true,
         borderColor: "#D1D6DC",
       },
