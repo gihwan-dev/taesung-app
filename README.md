@@ -3,6 +3,7 @@ B.sori 부산 엽합 캡스톤 경진 대회에서 진행한 앱 개발 입니�
 
 ## 프로젝트 소개
 pwa로 개발되었으며, 태성환경연구소에서 개발 및 판매하고 있는 악취포집기의 데이터를 모니터링 하고 나아가 제어하기 위한 앱을 개발하였습니다.
+아래 이미지를 클릭하시면 시영 영상 재생 페이지로 이동합니다!
 [![시연 영상](https://github.com/gihwan-dev/taesung-app/assets/84307361/590cbe99-9fa5-45b6-b7bf-222716a787a0
 )](https://github.com/gihwan-dev/taesung-app/assets/84307361/f0825c49-5ae2-4cf4-a481-cf9daf040b76)
 
