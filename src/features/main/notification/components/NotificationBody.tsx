@@ -4,8 +4,6 @@ import { formatDateToKorean } from "../../utils";
 const NotificationBody: React.FC<{
   data: any[];
 }> = ({ data }) => {
-  console.log(data);
-
   if (data.length === 0) {
     return (
       <div className="w-full h-full flex justify-center pt-12 overflow-auto">

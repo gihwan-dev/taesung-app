@@ -2,8 +2,14 @@ import { useParams } from "react-router-dom";
 import { useDeviceState } from "../../hooks";
 import { useDeviceCollect } from "../hooks";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import CropSquareIcon from "@mui/icons-material/CropSquare";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { getBatteryIcon } from "../../utils";
 import { useEffect, useState } from "react";
+import {
+  getCollectStatusColor,
+  getCollectStatusText,
+} from "../utils/device.utils";
 
 const GatheringInfo = () => {
   const [remainTime, setRemainTime] = useState<number>(0);
@@ -12,34 +18,42 @@ const GatheringInfo = () => {
 
   const params = useParams();
   const id = params.id;
-  const { data: state, isLoading: stateIsLoading } = useDeviceState(
-    id as string
-  );
+  const {
+    data: state,
+    isLoading: stateIsLoading,
+    refetch: refetchState,
+  } = useDeviceState(id as string);
   const {
     data: collect,
     isLoading: collectIsLoading,
     isError,
   } = useDeviceCollect(state?.ds_collect);
 
+  // 경과 시간 설정하는 로직
   useEffect(() => {
     if (stateIsLoading || collectIsLoading) {
       return;
     }
-    if (state.ds_remoteCollect !== 1) {
+    if (state.ds_collect !== 1 && state.ds_collect !== 5) {
+      const modifyDate = new Date(state?.mod_date);
+      const curDate = new Date();
+      const remainTime = curDate.getTime() - modifyDate.getTime();
+
+      setRemainTime(remainTime);
+
       const timerValue = setInterval(() => {
-        const modifyDate = new Date(state?.mod_date);
-        const curDate = new Date();
-        const remainTime = modifyDate.getTime() - curDate.getTime();
-        setRemainTime(remainTime);
+        setRemainTime((prev) => prev + 1000);
       }, 1000);
+
       setTimer(timerValue);
     }
-  }, [
-    stateIsLoading,
-    collectIsLoading,
-    state?.ds_remoteCollect,
-    state?.mod_date,
-  ]);
+
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, []);
 
   if (isError) {
     return null;
@@ -49,20 +63,22 @@ const GatheringInfo = () => {
     return null;
   }
 
-  const getCollectStatus = (collectStatus: number) => {};
+  // 시간이 0이 되면 refetch 하는 로직
+  if (remainTime <= 0) {
+    if (timer) {
+      clearInterval(timer);
+    }
+    refetchState();
+  }
 
-  const onClickHandler = () => {};
+  let content = <></>;
 
-  return (
-    <section className="flex flex-col items-center gap-8 w-full h-full pt-20">
-      <div
-        className={`py-8 w-10/12 ${
-          state?.ds_remoteCollect === 1 ? "bg-green-500" : "bg-red-500"
-        } flex flex-col items-center gap-4 rounded-2xl px-8`}
-      >
-        <p className="text-white font-bold">{collect?.cc_name}</p>
+  // collect 상태에 따라 다른 컨텐츠를 보여주는 로직
+  if (state?.ds_collect === 1) {
+    content = (
+      <>
         <p className="text-2xl font-bold text-white">
-          {state?.ds_remoteCollect === 1 ? "포집가능" : "포집불가능"}
+          {getCollectStatusText(state?.ds_remoteCollect)}
         </p>
         <button
           disabled={state?.ds_remoteCollect === 0}
@@ -70,11 +86,60 @@ const GatheringInfo = () => {
             state?.ds_remoteCollect === 1
               ? "bg-white"
               : "bg-gray-400 text-gray-200"
-          } w-full py-2 rounded-lg`}
+          } w-full py-2 rounded-lg font-bold`}
         >
           <PlayArrowIcon />
           포집 시작
         </button>
+      </>
+    );
+  } else if (state?.ds_collect !== 5) {
+    const remainTimeObject = new Date(remainTime);
+    const remainTimeHour = remainTimeObject.getHours();
+    const remainTimeMinute = remainTimeObject.getMinutes();
+    const remainTimeSecond = remainTimeObject.getSeconds();
+    content = (
+      <>
+        <div className="flex flex-col gap-6 w-full items-center">
+          <p className="flex flex-row gap-2 items-end">
+            <span className="relative text-xl font-bold text-white">
+              {remainTimeHour}시간 {remainTimeMinute}분 {remainTimeSecond}초
+              <span className="absolute whitespace-nowrap font-normal -right-10 bottom-0 text-xl text-white">
+                경과
+              </span>
+            </span>
+          </p>
+          <button className="w-full py-3 rounded-xl bg-white bg-opacity-30 text-white flex flex-row items-center justify-center">
+            <CropSquareIcon />
+            <span className="font-semibold">포집 중지</span>
+          </button>
+        </div>
+      </>
+    );
+  } else {
+    content = (
+      <div className="text-white">
+        <CheckCircleOutlineIcon
+          fontSize="large"
+          color="inherit"
+          fontWeight={800}
+        />
+      </div>
+    );
+  }
+
+  const onClickHandler = () => {};
+
+  return (
+    <section className="flex flex-col items-center gap-8 w-full h-full pt-20">
+      <div
+        className={`py-8 w-10/12 ${getCollectStatusColor(
+          state?.ds_collect,
+          state?.ds_remoteCollect
+        )} flex flex-col items-center gap-4 rounded-2xl px-8`}
+      >
+        <p className="text-white font-bold text-3xl">{collect?.cc_name}</p>
+        {content}
       </div>
       <div className="flex flex-row gap-4 items-center">
         <div className="w-12">

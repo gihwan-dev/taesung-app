@@ -70,7 +70,7 @@ const Selection = () => {
             className="absolute z-10 top-0 left-0 w-screen h-screen bg-modal-backdrop"
           ></div>
 
-          <div className="absolute w-full h-1/4 bottom-0 left-1/2 -translate-x-1/2 list-none bg-white z-50 text-black font-semibold py-2 px-4 rounded-t-3xl flex flex-col gap-4">
+          <div className="absolute w-full h-1/4 bottom-0 left-1/2 -translate-x-1/2 list-none bg-white z-50 text-black font-semibold py-6 px-4 rounded-t-3xl flex flex-col gap-4">
             <button
               onClick={() => setOpen(false)}
               className="absolute z-50 text-white -top-10 right-4"

@@ -29,6 +29,7 @@ const getDeviceCollectFetch = async (id: number) => {
 
 export const useDeviceCollect = (id: number) => {
   return useQuery({
+    refetchInterval: 1000,
     queryFn: () => getDeviceCollectFetch(id),
     queryKey: ["device", "collect", id],
   });

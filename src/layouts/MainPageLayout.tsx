@@ -12,8 +12,6 @@ const MainPageLayout = () => {
     return null;
   }
 
-  console.log(data);
-
   return (
     <main className="w-screen h-screen flex flex-col box-border">
       <div className="overflow-scroll h-full">
