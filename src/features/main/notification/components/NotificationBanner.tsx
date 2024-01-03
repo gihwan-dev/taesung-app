@@ -5,7 +5,7 @@ const NotificationBanner: React.FC<{
   onChange: (target: number) => void;
 }> = ({ value, onChange }) => {
   return (
-    <nav className="flex flex-row list-none justify-evenly w-full border-b border-b-gray-300 bg-white">
+    <nav className="flex flex-row text-sm list-none justify-evenly w-full border-b border-b-gray-300 bg-white">
       <li
         onClick={() => onChange(1)}
         className={`py-4 ${

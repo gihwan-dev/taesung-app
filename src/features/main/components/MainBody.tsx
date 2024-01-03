@@ -14,9 +14,6 @@ const MainBody = () => {
           />
         );
       })}
-      <button className="py-2 px-4 border border-gray-300 w-fit self-center bg-white rounded-full">
-        + 제품 추가하기
-      </button>
     </ul>
   );
 };

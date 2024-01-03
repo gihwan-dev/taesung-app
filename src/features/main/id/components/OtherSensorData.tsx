@@ -41,7 +41,7 @@ const OtherSensorData = () => {
   }
 
   return (
-    <ul className="self-center w-9/12 flex flex-col items-center gap-8">
+    <ul className="self-center w-9/12 flex flex-col items-center gap-8 h-full">
       <li className="flex flex-row justify-between w-full px-16">
         <p className="font-bold">온도</p>
         <p>{data.wd_temp} ℃</p>

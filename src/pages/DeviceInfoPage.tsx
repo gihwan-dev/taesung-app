@@ -30,7 +30,6 @@ const DeviceInfoPage = () => {
       <AppBar
         returnArrow
         selection
-        settings
       />
       <TopBanner
         selected={selected}

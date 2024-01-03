@@ -8,19 +8,19 @@ const OdorLevelChart = ({ value }) => {
   const getColor = () => {
     switch (value) {
       case 0:
-        return "#fa6055";
+        return "#FF3B30";
       case 1:
-        return "#fa6055";
+        return "#FF3B30";
       case 2:
-        return "#fa6055";
+        return "#FF971C";
       case 3:
-        return "#4d4d4d";
+        return "#CCC300";
       case 4:
-        return "#336699";
+        return "#7EAA00";
       case 5:
-        return "#336699";
+        return "#00A410";
       default:
-        return "#336699";
+        return "#00A410";
     }
   };
 
@@ -79,7 +79,12 @@ const OdorLevelChart = ({ value }) => {
         data={data}
         options={options}
       />
-      <p className="absolute bottom-8 left-1/2 -translate-x-1/2 text-2xl text-center text-cyan-700 font-bold">
+      <p
+        style={{
+          color: getColor(),
+        }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-2xl text-center font-bold"
+      >
         {value} <br />
         {getLabel()}
       </p>

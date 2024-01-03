@@ -50,7 +50,6 @@ const LoginForm = () => {
         throw new Error("로그인에 실패했습니다.");
       }
       const data = await response.json();
-      console.log(data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("email", data.user.email);
       localStorage.setItem("name", data.user.name);

@@ -17,7 +17,6 @@ const SettingPage = () => {
       <AppBar
         returnArrow
         selection
-        settings={false}
       />
       <SettingTopBanner
         value={value}

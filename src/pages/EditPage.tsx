@@ -7,7 +7,6 @@ const EditPage = () => {
       <AppBar
         returnArrow
         selection={false}
-        settings={false}
       />
       <Outlet />
     </div>

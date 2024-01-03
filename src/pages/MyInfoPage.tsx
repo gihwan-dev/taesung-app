@@ -18,7 +18,6 @@ const MyInfoPage = () => {
         returnArrow
         title="계정"
         selection={false}
-        settings={false}
       />
       <InfoTitle />
       <DeviceList />

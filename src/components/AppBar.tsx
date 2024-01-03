@@ -6,14 +6,12 @@ import { NavLink, useParams } from "react-router-dom";
 const AppBar: React.FC<{
   returnArrow: boolean;
   selection: boolean;
-  settings: boolean;
   title?: string;
-}> = ({ returnArrow, selection, settings, title }) => {
-  const params = useParams();
-  const id = params.id;
+}> = ({ returnArrow, selection, title }) => {
+  // const params = useParams();
 
   return (
-    <header className="flex flex-row justify-between items-center py-6 px-4 bg-gray-100">
+    <header className="flex flex-row justify-between items-center py-6 px-4 bg-white">
       {returnArrow ? (
         <NavLink to="/main">
           <KeyboardBackspaceIcon />
@@ -24,25 +22,11 @@ const AppBar: React.FC<{
       {selection ? (
         <Selection />
       ) : (
-        <div className="text-lg text-gray-700 font-bold text-center">
+        <div className="text-lg text-primary font-bold text-center">
           {title !== undefined ? title : ""}
         </div>
       )}
-      {settings ? (
-        <NavLink
-          to={{
-            pathname: "/main/setting",
-            search: `?id=${id}`,
-          }}
-        >
-          <SettingsIcon
-            fontSize="large"
-            color="disabled"
-          />
-        </NavLink>
-      ) : (
-        <div></div>
-      )}
+      <div></div>
     </header>
   );
 };
