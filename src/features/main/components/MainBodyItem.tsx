@@ -2,7 +2,6 @@ import React from "react";
 import { useDeviceState } from "../hooks";
 import { getBatteryIcon, getDeviceState } from "../utils/index";
 import { NavLink } from "react-router-dom";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const MainBodyItem: React.FC<{
   deviceName: string;

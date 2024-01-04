@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 import AppBar from "../components/AppBar";
 import SettingTopBanner from "../features/main/id/components/SettingTopBanner";
 import { useState } from "react";
