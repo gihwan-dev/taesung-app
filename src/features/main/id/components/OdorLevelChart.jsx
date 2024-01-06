@@ -1,8 +1,12 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import InfoIcon from "@mui/icons-material/Info";
+import { useState } from "react";
+import OrdorInfoDialog from "./OrdorInfoDialog";
 
 const OdorLevelChart = ({ value }) => {
+  const [openDialog, setOpenDialog] = useState(false);
+
   ChartJS.register(ArcElement, Tooltip, Legend);
 
   const getColor = () => {
@@ -88,13 +92,20 @@ const OdorLevelChart = ({ value }) => {
         {value} <br />
         {getLabel()}
       </p>
-      <button>
+      <button onClick={() => setOpenDialog(true)}>
         <InfoIcon
-          color="info"
-          fontSize="large"
-          className="absolute bottom-14 -right-10"
+          style={{
+            color: "rgba(21, 62, 111, 0.8)",
+            fontSize: "1.8rem",
+          }}
+          color="inherit"
+          fontSize="inherit"
+          className="absolute bottom-14 -right-8"
         />
       </button>
+      {openDialog ? (
+        <OrdorInfoDialog onClose={() => setOpenDialog(false)} />
+      ) : null}
     </div>
   );
 };

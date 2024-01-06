@@ -12,6 +12,7 @@ module.exports = {
         "card-bg-4": "#607DB5",
         "card-bg-5": "#3454A4",
         "card-bg-error": "rgba(202, 63, 55, 0.90)",
+        "dialog-bg": "rgba(68, 101, 140, 1)",
       },
     },
   },
