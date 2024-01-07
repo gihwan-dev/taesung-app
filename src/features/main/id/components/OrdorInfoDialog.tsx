@@ -1,18 +1,34 @@
-const OrdorValue = [0, 5, 10, 15, 30, 100];
-const OrdorText = ["매우좋음", "좋음", "보통", "나쁨", "매우나쁨"];
+import InfoDialog from "src/assets/InfoDialog";
+import Close from "@mui/icons-material/Close";
+
 const OrdorInfoDialog: React.FC<{
   onClose: () => void;
 }> = ({ onClose }) => {
   return (
     <>
-      <div className="w-80 absolute top-1/2 left-1/2 z-20 -translate-x-1/2 bg-dialog-bg">
-        <div className="w-24 px-4"></div>
-        <div></div>
-        <button onClick={onClose}>닫기</button>
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 z-40 bg-card-bg-5 rounded-lg"
+        style={{
+          backgroundImage: `url(${InfoDialog})`,
+          objectFit: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <InfoDialog />
+
+        <Close
+          color="inherit"
+          onClick={() => {
+            onClose();
+          }}
+          className="absolute right-0 top-0 text-white z-50"
+        ></Close>
       </div>
       <div
-        onClick={() => onClose()}
-        className="w-screen h-screen fixed z-10 top-0 left-0"
+        className="w-screen h-screen fixed top-0 left-0 z-30"
+        onClick={() => {
+          onClose();
+        }}
       ></div>
     </>
   );

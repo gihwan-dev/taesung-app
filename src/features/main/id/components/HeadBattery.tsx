@@ -27,7 +27,7 @@ const HeadBattery: React.FC<{
 
   return (
     <div className="w-ful pt-6 flex flex-row justify-center items-center gap-4">
-      <p className="font-mono">{collectData?.cc_name}</p>
+      <p className="font-bold">{collectData?.cc_name}</p>
       <div className="h-12 border"></div>
       <div className="flex flex-row gap-2">
         <div className="w-fit rotate-90">{getBatteryIcon(batteryLevel)}</div>

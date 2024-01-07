@@ -17,7 +17,7 @@ const MainBodyInfo = () => {
   }
 
   return (
-    <section className="flex flex-col gap-4 h-full overflow-auto">
+    <section className="flex flex-col h-full overflow-auto">
       <HeadBattery batteryLevel={state?.ds_bat} />
       <OdorLevel
         sdMos={sensor?.sd_mos}
