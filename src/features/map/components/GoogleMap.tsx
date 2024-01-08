@@ -2,8 +2,6 @@ import Marker from "src/assets/icon/ionicons/filled/Marker";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { useEffect, useRef, useState } from "react";
 
-const key = "AIzaSyCoMmR8MAQTa7wY9nVXxFbGr3ggpi_zsr4";
-
 const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
