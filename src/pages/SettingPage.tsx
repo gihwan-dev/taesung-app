@@ -1,8 +1,8 @@
 import AppBar from "../components/AppBar";
-import SettingTopBanner from "../features/main/id/components/SettingTopBanner";
+import SettingTopBanner from "../features/main/features/id/components/SettingTopBanner";
 import { useState } from "react";
-import AutoCollect from "../features/main/id/components/AutoCollect";
-import AlertSetting from "../features/main/id/components/AlertSetting";
+import AutoCollect from "../features/main/features/id/components/AutoCollect";
+import AlertSetting from "../features/main/features/id/components/AlertSetting";
 
 const SettingPage = () => {
   const [value, setValue] = useState(0);

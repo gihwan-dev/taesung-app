@@ -1,7 +1,6 @@
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
-import SettingsIcon from "@mui/icons-material/Settings";
 import Selection from "./Selection";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const AppBar: React.FC<{
   returnArrow: boolean;

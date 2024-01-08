@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import AppBar from "../components/AppBar";
-import DeviceList from "../features/main/id/myInfo/components/DeviceList";
-import InfoTitle from "../features/main/id/myInfo/components/InfoTitle";
+import DeviceList from "../features/setting/components/DeviceList";
+import InfoTitle from "../features/setting/components/InfoTitle";
 
 const MyInfoPage = () => {
   const navigate = useNavigate();

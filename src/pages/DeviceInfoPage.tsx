@@ -1,10 +1,10 @@
 import { useState } from "react";
 import AppBar from "../components/AppBar";
-import TopBanner from "../features/main/id/components/TobBanner";
-import MainBodyInfo from "../features/main/id/components/MainBodyInfo";
-import DeviceInfo from "../features/main/id/components/DeviceInfo";
-import GatheringInfo from "../features/main/id/components/GatheringInfo";
-import SearchData from "../features/main/id/components/SearchData";
+import TopBanner from "../features/main/features/id/components/TobBanner";
+import MainBodyInfo from "../features/main/features/id/components/MainBodyInfo";
+import DeviceInfo from "../features/main/features/id/components/DeviceInfo";
+import GatheringInfo from "../features/main/features/id/components/GatheringInfo";
+import SearchData from "../features/main/features/id/components/SearchData";
 
 const DeviceInfoPage = () => {
   const [selected, setSelected] = useState(0);

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import { useDeviceInfo, useDeviceState } from "../../hooks";
-import { formatDateToKorean } from "../../utils";
+import { useDeviceInfo, useDeviceState } from "../../../hooks";
+import { formatDateToKorean } from "../../../utils";
 
 const DeviceInfo = () => {
   const { data, isLoading } = useDeviceInfo();
