@@ -10,8 +10,9 @@ import MyInfoPage from "./pages/MyInfoPage";
 import DeviceInfoPage from "./pages/DeviceInfoPage";
 import SettingPage from "./pages/SettingPage";
 import EditPage from "./pages/EditPage";
-import EditOu from "./features/main/id/components/EditOu";
-import EditBat from "./features/main/id/components/EditBat";
+import EditOu from "./features/main/features/id/components/EditOu";
+import EditBat from "./features/main/features/id/components/EditBat";
+import MapPage from "./pages/MapPage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
     path: "login",
     element: <LoginPage />,
   },
+
   {
     path: "main",
     element: <MainPageLayout />,
@@ -29,6 +31,10 @@ const router = createBrowserRouter([
       { index: true, element: <MainPage /> },
       { path: "notification", element: <NotificationPage /> },
       { path: "info", element: <MyInfoPage /> },
+      {
+        path: "map",
+        element: <MapPage />,
+      },
       {
         path: ":id",
         element: <DeviceInfoPage />,

@@ -1,6 +1,6 @@
 import React from "react";
-import { getBatteryIcon } from "../../utils";
-import { useDeviceState } from "../../hooks";
+import { getBatteryIcon } from "../../../utils";
+import { useDeviceState } from "../../../hooks";
 import { useParams } from "react-router-dom";
 import { useDeviceCollect } from "../hooks";
 

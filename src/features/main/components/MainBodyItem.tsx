@@ -31,13 +31,11 @@ const MainBodyItem: React.FC<{
             </div>
             <div className="h-6 border border-gray-300"></div>
 
-            <p
-              className={`font-semibold ${
-                data?.ds_remoteCollect === 1 ? "text-green-400" : "text-red-400"
+            <div
+              className={`font-semibold w-2 h-2 rounded-full ${
+                data?.ds_remoteCollect === 1 ? "bg-green-400" : "bg-red-400"
               }`}
-            >
-              {data?.ds_remoteCollect === 1 ? "포집가능" : "포집 불가"}
-            </p>
+            ></div>
           </div>
         </div>
       </li>

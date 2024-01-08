@@ -34,7 +34,7 @@ const MainPageLayout = () => {
           }
         </NavLink>
         <NavLink
-          to="/map"
+          to="/main/map"
           end
         >
           {({ isActive }) =>

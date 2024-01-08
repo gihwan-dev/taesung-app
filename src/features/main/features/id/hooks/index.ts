@@ -1,12 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import { API_URL } from "../../../../const";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { API_URL } from "../../../../../const";
+import { collectFetch, getDeviceAlarmDataFetch } from "../fetch";
+import { collectFetchType } from "../types";
 
 const getDeviceSensorFetch = async (id: number) => {
   const response = await fetch(`${API_URL}/sensor/${id}`);
   if (!response.ok) {
     throw new Error("Network error");
   }
-  return (await response.json()) as any;
+  return (await response.json()) as any[];
 };
 
 export const useDeviceSensor = (id: number) => {
@@ -103,5 +105,19 @@ export const useAlertSetting = (id: string | null) => {
   return useQuery({
     queryFn: () => getAlertSettingFetch(id),
     queryKey: ["alert", "device", "setting", id],
+  });
+};
+
+export const useUpdateCollect = () => {
+  return useMutation({
+    mutationFn: ({ id, type }: { id: number; type: collectFetchType }) =>
+      collectFetch(id, type),
+  });
+};
+
+export const useDeviceAlarmData = (id: string) => {
+  return useQuery({
+    queryFn: () => getDeviceAlarmDataFetch(id),
+    queryKey: ["device", "alarm", id],
   });
 };

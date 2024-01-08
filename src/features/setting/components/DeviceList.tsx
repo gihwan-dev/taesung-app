@@ -1,4 +1,4 @@
-import { useDeviceInfo } from "../../../hooks";
+import { useDeviceInfo } from "../../main/hooks";
 
 const DeviceList = () => {
   const { data, isError, isLoading } = useDeviceInfo();
