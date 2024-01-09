@@ -13,12 +13,13 @@ const MyInfoPage = () => {
     navigate("/login");
   };
   return (
-    <section className="w-full h-full bg-gray-100 flex flex-col justify-between">
+    <section className="w-full h-full flex flex-col justify-between">
       <AppBar
         returnArrow
         title="계정"
         selection={false}
       />
+      <hr />
       <InfoTitle />
       <DeviceList />
       <div className="w-full flex flex-row items-center justify-center gap-8 py-4">
@@ -27,11 +28,11 @@ const MyInfoPage = () => {
       </div>
       <button
         onClick={onLogout}
-        className="w-full bg-gray-300 py-3 font-bold border-gray-400"
+        className="w-full bg-gray-100 py-3 font-bold border border-gray-300"
       >
         로그아웃
       </button>
-      <button className="w-full bg-gray-300 py-3 text-red-500 font-bold border border-gray-400">
+      <button className="w-full bg-gray-100 py-3 text-red-500 font-bold border border-gray-300">
         회원탈퇴 및 서비스 해지
       </button>
     </section>
