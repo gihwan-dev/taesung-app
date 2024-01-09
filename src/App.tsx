@@ -15,6 +15,7 @@ import SettingRootPage from "./pages/SettingRootPage";
 import SettingMainPage from "./pages/SettingMainPage";
 import AlertSetting from "./features/main/features/id/components/AlertSetting";
 import AutoCollect from "./features/main/features/id/components/AutoCollect";
+import AlertSettingMain from "./features/main/features/id/components/AlertSettingMain";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             path: "notification",
             element: <AlertSetting />,
             children: [
+              {
+                index: true,
+                element: <AlertSettingMain />,
+              },
               {
                 path: "ou",
                 element: <EditOu />,

@@ -1,18 +1,19 @@
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Selection from "./Selection";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AppBar: React.FC<{
   returnArrow: boolean;
   selection: boolean;
   title?: string;
 }> = ({ returnArrow, selection, title }) => {
+  const navigate = useNavigate();
   return (
     <header className="flex flex-row justify-between items-center py-6 px-4 bg-white">
       {returnArrow ? (
-        <NavLink to="..">
+        <button onClick={() => navigate(-1)}>
           <KeyboardBackspaceIcon />
-        </NavLink>
+        </button>
       ) : (
         <div></div>
       )}
