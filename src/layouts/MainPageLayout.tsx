@@ -12,6 +12,8 @@ const MainPageLayout = () => {
     return null;
   }
 
+  const notificationCount = data.filter((item) => item.al_checked === 0).length;
+
   return (
     <main className="w-screen h-screen flex flex-col box-border">
       <div className="overflow-scroll h-full">
@@ -64,9 +66,9 @@ const MainPageLayout = () => {
               )
             }
           </NavLink>
-          {data.length !== 0 && (
+          {data.length !== 0 && notificationCount !== 0 && (
             <div className="absolute -top-2 -right-4 bg-red-400 w-6 h-6 flex flex-col justify-center items-center text-white font-semibold rounded-full">
-              {data.filter((item) => item.al_checked === 0).length}
+              {notificationCount}
             </div>
           )}
         </div>

@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NotificationBanner from "../features/main/notification/components/NotificationBanner";
-import { useNotification } from "../features/main/notification/hooks";
+import {
+  useNotification,
+  useReadNotification,
+} from "../features/main/notification/hooks";
 import NotificationBody from "../features/main/notification/components/NotificationBody";
 
 const NotificationPage = () => {
   const [value, setValue] = useState(1);
 
-  const { data, isLoading, isError } = useNotification();
+  const { data, isLoading, isError, refetch } = useNotification();
+
+  const { mutate } = useReadNotification();
+
+  useEffect(() => {
+    mutate(value, {
+      onSuccess: () => {
+        refetch();
+      },
+    });
+  }, [value, refetch, mutate]);
 
   if (isLoading || isError) {
     return null;

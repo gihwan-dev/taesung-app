@@ -1,33 +1,63 @@
-import Marker from "src/assets/icon/ionicons/filled/Marker";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import { useEffect, useRef, useState } from "react";
-
+import React, { useEffect } from "react";
 import { key } from "src/api-key";
+import {
+  GoogleMap as GoogleMapApi,
+  useJsApiLoader,
+  Marker as GoogleMarker,
+} from "@react-google-maps/api";
 
-const render = (status: Status) => {
-  return <h1>{status}</h1>;
-};
+const GoogleMap: React.FC<{
+  center: { lng: number; lat: number };
+  deviceInfoList: any[];
+  clickMarkerHandler: (index: number) => void;
+}> = ({ center, deviceInfoList, clickMarkerHandler }) => {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: key,
+  });
 
-const GoogleMap = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = useState<google.maps.Map>();
+  const [zoom, setZoom] = React.useState(11);
 
   useEffect(() => {
-    if (ref.current && !map) {
-      setMap(new window.google.maps.Map(ref.current, {}));
-    }
-  }, [ref, map]);
+    setTimeout(() => {
+      setZoom(15);
+    }, 500);
+  }, []);
 
-  return (
-    <div className="h-full w-full">
-      <Wrapper
-        apiKey={key}
-        render={render}
-      >
-        <Marker />
-      </Wrapper>
-    </div>
+  const [map, setMap] = React.useState(null);
+
+  const onLoad = React.useCallback((map) => {
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map);
+  }, []);
+
+  const onUnmount = React.useCallback((map) => {
+    setMap(null);
+  }, []);
+
+  return isLoaded ? (
+    <GoogleMapApi
+      center={center}
+      zoom={zoom}
+      onLoad={onLoad}
+      onUnmount={onUnmount}
+      mapContainerStyle={{ height: "90%", width: "100%" }}
+    >
+      {deviceInfoList?.map((item, index) => {
+        return (
+          <GoogleMarker
+            onClick={() => clickMarkerHandler(index)}
+            key={`${item.di_idx}-google-marker`}
+            position={{ lat: item.di_lat, lng: item.di_lng }}
+          />
+        );
+      })}
+    </GoogleMapApi>
+  ) : (
+    <></>
   );
 };
 
-export default GoogleMap;
+export default React.memo(GoogleMap);
