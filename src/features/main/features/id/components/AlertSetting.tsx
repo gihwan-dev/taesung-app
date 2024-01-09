@@ -13,7 +13,7 @@ const AlertSetting = () => {
   if (isLoading || isError) {
     return null;
   }
-
+  // git 테스트용 주속
   return (
     <div className="w-full flex flex-col  bg-gray-100 h-full">
       <AppBar
