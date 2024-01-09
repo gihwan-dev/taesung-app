@@ -14,7 +14,7 @@ const MainBodyItem: React.FC<{
   }
 
   return (
-    <NavLink to={`${deviceId}`}>
+    <NavLink to={`/main/${deviceId}`}>
       <li className="w-full flex flex-row items-center justify-evenly py-6 gap-6 bg-white px-4 rounded-lg shadow-lg box-border hover:scale-105 border border-gray-100">
         <div>{getDeviceState(data.ds_collect)}</div>
         <div className="flex flex-col gap-2 justify-center">
