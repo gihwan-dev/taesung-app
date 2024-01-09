@@ -7,3 +7,9 @@ export type deviceAlertType = {
   reg_date: string;
   al_checked: number;
 };
+
+export type UpdateAlarmDateFetchType = {
+  type: "bat" | "door" | "ou" | "collect";
+  id: string;
+  value: 1 | 0;
+};

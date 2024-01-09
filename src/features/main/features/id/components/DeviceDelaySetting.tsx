@@ -4,22 +4,31 @@ const DeviceDelaySetting: React.FC<{
   value: number;
   onAdd: () => void;
   onSub: () => void;
-}> = ({ value, onAdd, onSub }) => {
+  setValue: (value: number) => void;
+}> = ({ value, onAdd, onSub, setValue }) => {
   return (
     <div
       className={
-        "w-full flex flex-row justify-center items-center translate-y-12 gap-8"
+        "w-full flex flex-row justify-center items-center translate-y-12"
       }
     >
       <button
-        className="bg-black text-white px-3 text-2xl rounded-lg"
+        className="bg-chart-active text-white px-3 text-2xl rounded-lg"
         onClick={onSub}
       >
         -
       </button>
-      <div className="bg-white px-8 py-2 rounded-lg">{value}sec</div>
+      <div className="bg-white px-8 py-2 rounded-lg flex flex-row items-center justify-center">
+        <input
+          onChange={(e) => setValue(Number(e.target.value))}
+          className="w-12 border-b border-gray-300 text-center"
+          type="number"
+          value={value}
+        />
+        <span>sec</span>
+      </div>
       <button
-        className="bg-black text-white px-3 text-2xl rounded-lg"
+        className="bg-chart-active text-white px-3 text-2xl rounded-lg"
         onClick={onAdd}
       >
         +

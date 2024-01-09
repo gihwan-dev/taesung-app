@@ -12,25 +12,21 @@ const Selection = () => {
   const param = useParams();
   const { data } = useDeviceInfo();
   const navigate = useNavigate();
-  const [searchParams, _] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [id, setId] = useState<number | null>(null);
 
   const searchStr = searchParams.get("id");
 
-  let id = Number(param.id);
-
-  if (!id) {
-    if (searchParams) {
-      id = Number(searchStr);
-    }
-  }
-
   useEffect(() => {
-    if (!id) {
+    if (!param.id) {
       if (searchStr) {
-        id = Number(searchStr);
+        setId(Number(searchStr));
       }
+    } else {
+      setId(Number(param.id));
     }
-  }, [id, searchStr]);
+  }, [id, searchStr, param.id]);
 
   useEffect(() => {
     data?.forEach((item) => {
@@ -46,7 +42,8 @@ const Selection = () => {
 
   const listClickHandler = (id: number) => {
     if (searchStr) {
-      navigate(`/main/setting?id=${id}`);
+      searchParams.set("id", String(id));
+      setSearchParams(searchParams);
     } else {
       navigate(`/main/${id}`);
     }
