@@ -5,6 +5,7 @@ import {
   getDeviceAlarmDataFetch,
   updateAlarmDataFetch,
   updateDeviceBat,
+  updateDeviceMaxOu,
   updateDeviceOu,
 } from "../fetch";
 import { collectFetchType, UpdateAlarmDateFetchType } from "../types";
@@ -161,5 +162,19 @@ export const useUpdateBat = () => {
     mutationFn: ({ id, bat }: { id: number; bat: number }) => {
       return updateDeviceBat(id, bat);
     },
+  });
+};
+
+export const useUpdateMaxOu = () => {
+  return useMutation({
+    mutationFn: ({
+      id,
+      maxOu,
+      delay,
+    }: {
+      id: number;
+      maxOu: number;
+      delay: number;
+    }) => updateDeviceMaxOu(id, maxOu, delay),
   });
 };
