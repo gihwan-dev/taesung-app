@@ -56,3 +56,13 @@ export const updateDeviceBat = (id: number, bat: number) =>
     },
     body: JSON.stringify({ bat }),
   });
+
+export const updateDeviceMaxOu = (id: number, maxOu: number, delay: number) => {
+  return fetch(`${API_URL}/device/${id}/maxOu`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ maxOu, delay }),
+  });
+};
