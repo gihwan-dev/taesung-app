@@ -7,12 +7,10 @@ const AppBar: React.FC<{
   selection: boolean;
   title?: string;
 }> = ({ returnArrow, selection, title }) => {
-  // const params = useParams();
-
   return (
     <header className="flex flex-row justify-between items-center py-6 px-4 bg-white">
       {returnArrow ? (
-        <NavLink to="/main">
+        <NavLink to="..">
           <KeyboardBackspaceIcon />
         </NavLink>
       ) : (

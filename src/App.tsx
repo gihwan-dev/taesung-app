@@ -8,11 +8,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NotificationPage from "./pages/Notification";
 import MyInfoPage from "./pages/MyInfoPage";
 import DeviceInfoPage from "./pages/DeviceInfoPage";
-import SettingPage from "./pages/SettingPage";
-import EditPage from "./pages/EditPage";
 import EditOu from "./features/main/features/id/components/EditOu";
 import EditBat from "./features/main/features/id/components/EditBat";
 import MapPage from "./pages/MapPage";
+import SettingRootPage from "./pages/SettingRootPage";
+import SettingMainPage from "./pages/SettingMainPage";
+import AlertSetting from "./features/main/features/id/components/AlertSetting";
+import AutoCollect from "./features/main/features/id/components/AutoCollect";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +32,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> },
       { path: "notification", element: <NotificationPage /> },
-      { path: "info", element: <MyInfoPage /> },
       {
         path: "map",
         element: <MapPage />,
@@ -41,20 +42,31 @@ const router = createBrowserRouter([
       },
       {
         path: "setting",
-        element: <SettingPage />,
-      },
-      {
-        path: "edit",
-        element: <EditPage />,
+        element: <SettingRootPage />,
         children: [
           {
-            path: "ou",
-            element: <EditOu />,
+            index: true,
+            element: <SettingMainPage />,
           },
           {
-            path: "bat",
-            element: <EditBat />,
+            path: "notification",
+            element: <AlertSetting />,
+            children: [
+              {
+                path: "ou",
+                element: <EditOu />,
+              },
+              {
+                path: "bat",
+                element: <EditBat />,
+              },
+            ],
           },
+          {
+            path: "collect",
+            element: <AutoCollect />,
+          },
+          { path: "info", element: <MyInfoPage /> },
         ],
       },
     ],

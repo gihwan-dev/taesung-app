@@ -73,7 +73,7 @@ const MainPageLayout = () => {
           )}
         </div>
         <NavLink
-          to="/setting"
+          to="/main/setting"
           end
         >
           {({ isActive }) =>

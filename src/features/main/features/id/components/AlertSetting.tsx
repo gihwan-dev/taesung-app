@@ -1,6 +1,7 @@
 import { NavLink, useSearchParams } from "react-router-dom";
 import { useAlertSetting } from "../hooks";
 import { Switch } from "@mui/material";
+import AppBar from "src/components/AppBar";
 
 const AlertSetting = () => {
   const [searchParams, _] = useSearchParams();
@@ -15,11 +16,15 @@ const AlertSetting = () => {
 
   return (
     <div className="w-full flex flex-col  bg-gray-100 h-full">
+      <AppBar
+        returnArrow
+        selection={true}
+      />
       <div className="flex flex-col px-12 py-16 justify-center items-center gap-8 border-b-2 border-b-gray-300">
         <NavLink
           className="flex w-7/12 justify-center flex-row gap-4 py-4 px-4 bg-white border border-black rounded-lg items-center"
           to={{
-            pathname: "/main/edit/ou",
+            pathname: "/main/setting/notification/ou",
             search: `?id=${id}`,
           }}
         >
@@ -31,7 +36,7 @@ const AlertSetting = () => {
         </NavLink>
         <NavLink
           to={{
-            pathname: "/main/edit/bat",
+            pathname: "/main/setting/notification/bat",
             search: `?id=${id}`,
           }}
           className="flex w-7/12 justify-center flex-row gap-4 py-4 px-4 bg-white border border-black rounded-lg items-center"

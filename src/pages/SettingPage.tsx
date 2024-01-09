@@ -13,10 +13,6 @@ const SettingPage = () => {
 
   return (
     <section className="w-full h-full">
-      <AppBar
-        returnArrow
-        selection
-      />
       <SettingTopBanner
         value={value}
         onChange={onChangeHandler}

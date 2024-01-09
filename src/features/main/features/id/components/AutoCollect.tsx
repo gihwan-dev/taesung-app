@@ -3,9 +3,9 @@ import CollectSettingGraph from "./CollectSettingGraph";
 import { useSearchParams } from "react-router-dom";
 import { useDeviceSetting } from "../hooks";
 import DeviceDelaySetting from "./DeviceDelaySetting";
+import AppBar from "src/components/AppBar";
 
 const AutoCollect = () => {
-  const [] = useState();
   const [searchParams, _] = useSearchParams();
   const [ouValue, setOuValue] = useState(0);
   const [delayValue, setDelayValue] = useState(0);
@@ -46,6 +46,10 @@ const AutoCollect = () => {
 
   return (
     <div className="w-full h-full bg-gray-100 px-8 flex flex-col ">
+      <AppBar
+        returnArrow
+        selection
+      />
       <h1 className="py-8 text-center font-bold text-lg">복합악취</h1>
       <CollectSettingGraph
         onAdd={onAddOuValueHandler}
