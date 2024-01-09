@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import AppBar from "src/components/AppBar";
 
 const SettingRootPage = () => {
   return (

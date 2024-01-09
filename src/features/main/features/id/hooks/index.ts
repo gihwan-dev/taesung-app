@@ -1,7 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { API_URL } from "../../../../../const";
-import { collectFetch, getDeviceAlarmDataFetch } from "../fetch";
-import { collectFetchType } from "../types";
+import {
+  collectFetch,
+  getDeviceAlarmDataFetch,
+  updateAlarmDataFetch,
+  updateDeviceBat,
+  updateDeviceOu,
+} from "../fetch";
+import { collectFetchType, UpdateAlarmDateFetchType } from "../types";
 
 const getDeviceSensorFetch = async (id: number) => {
   const response = await fetch(`${API_URL}/sensor/${id}`);
@@ -90,6 +96,20 @@ export const useDeviceSetting = (id: string | null) => {
   });
 };
 
+type BooleanAsNumber = 1 | 0;
+
+type AlertSettingType = {
+  as_bat: BooleanAsNumber;
+  as_batSet: number;
+  as_collect: BooleanAsNumber;
+  as_door: BooleanAsNumber;
+  as_idx: number;
+  as_ou: BooleanAsNumber;
+  as_ouSet: number;
+  di_idx: number;
+  mod_date: string;
+};
+
 const getAlertSettingFetch = async (id: string | null) => {
   if (!id) {
     throw new Error("id is not defined");
@@ -98,7 +118,7 @@ const getAlertSettingFetch = async (id: string | null) => {
   if (!response.ok) {
     throw new Error("Network error");
   }
-  return (await response.json()) as any;
+  return (await response.json()) as AlertSettingType;
 };
 
 export const useAlertSetting = (id: string | null) => {
@@ -119,5 +139,27 @@ export const useDeviceAlarmData = (id: string) => {
   return useQuery({
     queryFn: () => getDeviceAlarmDataFetch(id),
     queryKey: ["device", "alarm", id],
+  });
+};
+
+export const useUpdateAlarmData = () => {
+  return useMutation({
+    mutationFn: (data: UpdateAlarmDateFetchType) => updateAlarmDataFetch(data),
+    mutationKey: ["device", "alarm"],
+  });
+};
+
+export const useUpdateOu = () => {
+  return useMutation({
+    mutationFn: ({ id, ou }: { id: number; ou: number }) =>
+      updateDeviceOu(id, ou),
+  });
+};
+
+export const useUpdateBat = () => {
+  return useMutation({
+    mutationFn: ({ id, bat }: { id: number; bat: number }) => {
+      return updateDeviceBat(id, bat);
+    },
   });
 };
