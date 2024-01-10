@@ -11,6 +11,8 @@ import {
   getCollectStatusText,
 } from "../utils/device.utils";
 import { collectFetchType } from "../types";
+import { motion } from "framer-motion";
+import { fadeIn } from "src/utils/framer-motion.utils";
 
 const GatheringInfo = () => {
   const [remainTime, setRemainTime] = useState<number>(0);
@@ -176,7 +178,10 @@ const GatheringInfo = () => {
   }
 
   return (
-    <section className="flex flex-col items-center gap-8 w-full h-full pt-20">
+    <motion.section
+      {...fadeIn}
+      className="flex flex-col items-center gap-8 w-full h-full pt-20"
+    >
       <div
         className={`py-8 w-10/12 ${getCollectStatusColor(
           state?.ds_collect,
@@ -198,7 +203,7 @@ const GatheringInfo = () => {
           <div>{state?.ds_bat}%</div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
