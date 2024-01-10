@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import SensorDataList from "./SensorDataList";
 import AlarmDataList from "./AlarmDataList";
 
+import { motion } from "framer-motion";
+import { fadeIn } from "src/utils/framer-motion.utils";
+
 const SearchData = () => {
   const params = useParams();
   const id = params.id as string;
@@ -18,7 +21,7 @@ const SearchData = () => {
   const [endDate, setEndDate] = useState<Date | null>(null);
 
   return (
-    <section>
+    <motion.section {...fadeIn}>
       <div className="px-4 flex flex-col gap-4 justify-start py-4 items-start">
         <button
           onClick={() => setOpen(true)}
@@ -84,7 +87,7 @@ const SearchData = () => {
           id={id}
         />
       )}
-    </section>
+    </motion.section>
   );
 };
 

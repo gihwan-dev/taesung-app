@@ -2,6 +2,9 @@ import { useParams } from "react-router-dom";
 import { useDeviceInfo, useDeviceState } from "../../../hooks";
 import { formatDateToKorean } from "../../../utils";
 
+import { motion } from "framer-motion";
+import { fadeIn } from "src/utils/framer-motion.utils";
+
 const DeviceInfo = () => {
   const { data, isLoading } = useDeviceInfo();
   const params = useParams();
@@ -27,7 +30,10 @@ const DeviceInfo = () => {
   }
 
   return (
-    <section className="pt-12 w-full h-full flex flex-col items-center bg-gray-100 gap-6">
+    <motion.section
+      {...fadeIn}
+      className="pt-12 w-full h-full flex flex-col items-center bg-gray-100 gap-6"
+    >
       <div className="bg-white w-5/12 aspect-square rounded-2xl flex justify-center items-center">
         <img
           src="../device-large.png"
@@ -54,7 +60,7 @@ const DeviceInfo = () => {
           <p>{state.ds_door === 0 ? "닫힘" : "열림"}</p>
         </li>
       </ul>
-    </section>
+    </motion.section>
   );
 };
 

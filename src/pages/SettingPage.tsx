@@ -1,4 +1,3 @@
-import AppBar from "../components/AppBar";
 import SettingTopBanner from "../features/main/features/id/components/SettingTopBanner";
 import { useState } from "react";
 import AutoCollect from "../features/main/features/id/components/AutoCollect";

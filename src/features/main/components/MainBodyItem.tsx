@@ -3,6 +3,9 @@ import { useDeviceState } from "../hooks";
 import { getBatteryIcon, getDeviceState } from "../utils/index";
 import { NavLink } from "react-router-dom";
 
+import { motion } from "framer-motion";
+import { inAndOut } from "src/utils/framer-motion.utils";
+
 const MainBodyItem: React.FC<{
   deviceName: string;
   deviceId: string;
@@ -15,7 +18,10 @@ const MainBodyItem: React.FC<{
 
   return (
     <NavLink to={`/main/${deviceId}`}>
-      <li className="w-full flex flex-row items-center justify-evenly py-6 gap-6 bg-white px-4 rounded-lg shadow-lg box-border hover:scale-105 border border-gray-100">
+      <motion.li
+        {...inAndOut}
+        className="w-full flex flex-row items-center justify-evenly py-6 gap-6 bg-white px-4 rounded-lg shadow-lg box-border hover:scale-105 border border-gray-100"
+      >
         <div>{getDeviceState(data.ds_collect)}</div>
         <div className="flex flex-col gap-2 justify-center">
           <p className="text-lg font-bold">{deviceName}</p>
@@ -38,7 +44,7 @@ const MainBodyItem: React.FC<{
             ></div>
           </div>
         </div>
-      </li>
+      </motion.li>
     </NavLink>
   );
 };
