@@ -1,25 +1,23 @@
 import { useParams } from "react-router-dom";
-import { useDeviceInfo, useDeviceState } from "../../../hooks";
+import { useDeviceInfo } from "../../../hooks";
 import { formatDateToKorean } from "../../../utils";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "src/utils/framer-motion.utils";
+import { useAppSelector } from "src/hooks/redux.hooks";
 
 const DeviceInfo = () => {
   const { data, isLoading } = useDeviceInfo();
   const params = useParams();
-  const { data: state, isLoading: stateLoading } = useDeviceState(
-    params.id as string
-  );
-  if (isLoading || stateLoading) {
+  const id = params.id as string;
+  const state = useAppSelector((state) => state.deviceState[+id]);
+  if (isLoading || !state) {
     return null;
   }
 
   if (data === undefined) {
     return <h1>오류가 발생했습니다. 다시 시도해 주세요.</h1>;
   }
-
-  const id = params.id;
 
   let device;
 
@@ -34,12 +32,6 @@ const DeviceInfo = () => {
       {...fadeIn}
       className="pt-12 w-full h-full flex flex-col items-center bg-gray-100 gap-6"
     >
-      <div className="bg-white w-5/12 aspect-square rounded-2xl flex justify-center items-center">
-        <img
-          src="../device-large.png"
-          alt="device"
-        />
-      </div>
       <ul className="flex flex-col items-center w-7/12">
         <li className="flex flex-row border-b border-b-gray-200 py-4 justify-between w-full">
           <p className="font-bold">장비명</p>

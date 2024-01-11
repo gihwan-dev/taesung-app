@@ -1,23 +1,16 @@
 import { useParams } from "react-router-dom";
 import { useWeather } from "../hooks";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import { useAppSelector } from "src/hooks/redux.hooks";
 
 const OtherSensorData = () => {
   const params = useParams();
   const id = Number(params.id);
 
-  const { data, isLoading, isError } = useWeather(id);
+  const data = useAppSelector((state) => state.weatherDataState[id]);
 
-  if (!data || data.length === 0) {
+  if (!data) {
     return <h1 className="text-center">수집된 날씨 데이터가 없습니다.</h1>;
-  }
-
-  if (isError) {
-    return null;
-  }
-
-  if (isLoading) {
-    return null;
   }
 
   function getWindDirection(degree: number) {

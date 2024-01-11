@@ -26,7 +26,6 @@ const getDeviceStateFetcher = async (deviceId: string) => {
 
 export const useDeviceState = (deviceId: string) => {
   return useQuery({
-    refetchInterval: 1000,
     queryFn: () => getDeviceStateFetcher(deviceId),
     queryKey: ["device", deviceId],
   });

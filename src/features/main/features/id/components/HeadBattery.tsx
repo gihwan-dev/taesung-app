@@ -3,14 +3,15 @@ import { getBatteryIcon } from "../../../utils";
 import { useDeviceState } from "../../../hooks";
 import { useParams } from "react-router-dom";
 import { useDeviceCollect } from "../hooks";
+import { useAppSelector } from "src/hooks/redux.hooks";
 
 const HeadBattery: React.FC<{
   batteryLevel: number;
 }> = ({ batteryLevel }) => {
   const params = useParams();
-  const { data: state, isLoading: stateLoading } = useDeviceState(
-    params.id as string
-  );
+  const id = params.id as string;
+  const state = useAppSelector((state) => state.deviceState[+id]);
+
   const {
     data: collectData,
     isLoading: collectLoading,
@@ -21,7 +22,7 @@ const HeadBattery: React.FC<{
     return null;
   }
 
-  if (stateLoading || collectLoading) {
+  if (!state || collectLoading) {
     return null;
   }
 

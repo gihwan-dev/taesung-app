@@ -1,21 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useDeviceSensor } from "../hooks";
-import { useDeviceState } from "../../../hooks";
 import HeadBattery from "./HeadBattery";
 import OdorLevel from "./OrdorLevel";
 import OtherSensorData from "./OtherSensorData";
 
 import { motion } from "framer-motion";
 import { fadeIn } from "src/utils/framer-motion.utils";
+import { useAppSelector } from "src/hooks/redux.hooks";
 
 const MainBodyInfo = () => {
   const params = useParams();
   const id = Number(params.id);
 
-  const { data: sensor, isLoading: sensorLoading } = useDeviceSensor(id);
-  const { data: state, isLoading: stateLoading } = useDeviceState("" + id);
+  const sensor = useAppSelector((state) => state.sensorDataState[id]);
+  const state = useAppSelector((state) => state.deviceState[id]);
 
-  if (sensorLoading || stateLoading || !sensor) {
+  if (!state || !sensor) {
     return null;
   }
 
@@ -26,8 +25,8 @@ const MainBodyInfo = () => {
     >
       <HeadBattery batteryLevel={state?.ds_bat} />
       <OdorLevel
-        sdMos={sensor[0].sd_mos}
-        sdOu={sensor[0].sd_ou}
+        sdMos={sensor.sd_mos}
+        sdOu={sensor.sd_ou}
       />
       <OtherSensorData />
     </motion.section>

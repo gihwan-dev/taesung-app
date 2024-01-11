@@ -1,19 +1,19 @@
 import React from "react";
-import { useDeviceState } from "../hooks";
 import { getBatteryIcon, getDeviceState } from "../utils/index";
 import { NavLink } from "react-router-dom";
 
 import { motion } from "framer-motion";
 import { inAndOut } from "src/utils/framer-motion.utils";
+import { useAppSelector } from "src/hooks/redux.hooks";
 
 const MainBodyItem: React.FC<{
   deviceName: string;
   deviceId: string;
 }> = ({ deviceId, deviceName }) => {
-  const { data, isLoading } = useDeviceState(deviceId);
+  const data = useAppSelector((state) => state.deviceState[deviceId]);
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
+  if (!data) {
+    return null;
   }
 
   return (

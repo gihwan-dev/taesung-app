@@ -13,6 +13,8 @@ import {
 import { collectFetchType } from "../types";
 import { motion } from "framer-motion";
 import { fadeIn } from "src/utils/framer-motion.utils";
+import { useAppDispatch, useAppSelector } from "src/hooks/redux.hooks";
+import { setDeviceState } from "src/stores/device_state.slice";
 
 const GatheringInfo = () => {
   const [remainTime, setRemainTime] = useState<number>(0);
@@ -22,13 +24,11 @@ const GatheringInfo = () => {
   const params = useParams();
   const id = params.id as string;
 
+  const state = useAppSelector((state) => state.deviceState[+id]);
+  const dispatch = useAppDispatch();
+
   const { mutate } = useUpdateCollect();
 
-  const {
-    data: state,
-    isLoading: stateIsLoading,
-    refetch: refetchState,
-  } = useDeviceState(id as string);
   const {
     data: collect,
     isLoading: collectIsLoading,
@@ -39,8 +39,9 @@ const GatheringInfo = () => {
     mutate(
       { id: +id, type: type },
       {
-        onSuccess: () => {
-          refetchState();
+        onSuccess: async (data) => {
+          const response = (await data.json()) as any;
+          dispatch(setDeviceState(response));
         },
       }
     );
@@ -48,7 +49,7 @@ const GatheringInfo = () => {
 
   // 경과 시간 설정하는 로직
   useEffect(() => {
-    if (stateIsLoading || collectIsLoading) {
+    if (!state || collectIsLoading) {
       return;
     }
     if (state.ds_collect !== 1 && state.ds_collect !== 5) {
@@ -76,16 +77,8 @@ const GatheringInfo = () => {
     return null;
   }
 
-  if (stateIsLoading || collectIsLoading) {
+  if (!state || collectIsLoading) {
     return null;
-  }
-
-  // 시간이 0이 되면 refetch 하는 로직
-  if (remainTime <= 0) {
-    if (timer) {
-      clearInterval(timer);
-    }
-    refetchState();
   }
 
   const restartButton = (

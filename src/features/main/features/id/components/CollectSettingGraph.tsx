@@ -1,7 +1,7 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import React from "react";
-import { Alert, Slider } from "@mui/material";
+import { Slider } from "@mui/material";
 
 const CollectSettingGraph: React.FC<{
   value: number;
