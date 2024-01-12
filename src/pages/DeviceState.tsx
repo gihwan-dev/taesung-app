@@ -30,7 +30,7 @@ const DeviceState = () => {
   };
 
   const getData = async () => {
-    const res = await fetch(`${API_URL}/state/all`, {
+    const res = await fetch(`${API_URL}/device/state/all`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
