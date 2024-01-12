@@ -22,6 +22,7 @@ import { getToken } from "firebase/messaging";
 import { messaging } from "./firebase.js";
 import { Provider } from "react-redux";
 import store from "./stores/store";
+import DeviceState from "./pages/DeviceState";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,10 @@ const router = createBrowserRouter([
     path: "login",
     element: <LoginPage />,
   },
-
+  {
+    path: "virtual",
+    element: <DeviceState />,
+  },
   {
     path: "main",
     element: <MainPageLayout />,
