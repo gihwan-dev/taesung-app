@@ -22,12 +22,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-api-key.ts
-=======
-src/const.ts
->>>>>>> 09f2ef7 (fix(api): api 키 제거)
-=======
-api-key.ts
->>>>>>> 94b74c2 (Merge remote-tracking branch 'origin/main' into main)

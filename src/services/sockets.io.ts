@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
-import { API_URL } from "src/const";
+import { WS_URL } from "src/const";
 
-export const socket = io(API_URL, {
+export const socket = io(WS_URL, {
   transports: ["websocket"],
   autoConnect: true,
 });
