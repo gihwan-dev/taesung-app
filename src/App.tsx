@@ -17,9 +17,7 @@ import AlertSetting from "./features/main/features/id/components/AlertSetting";
 import AutoCollect from "./features/main/features/id/components/AutoCollect";
 import AlertSettingMain from "./features/main/features/id/components/AlertSettingMain";
 import { useEffect } from "react";
-import { API_URL } from "./const";
-import { getToken } from "firebase/messaging";
-import { messaging } from "./firebase.js";
+
 import { Provider } from "react-redux";
 import store from "./stores/store";
 import DeviceState from "./pages/DeviceState";
@@ -91,34 +89,7 @@ const router = createBrowserRouter([
 function App() {
   const queryClient = new QueryClient();
 
-  useEffect(() => {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        getToken(messaging, {
-          vapidKey:
-            "BCXtbBSDudugWghHk9Jyk5HYf5prx26QvtLt65pesLYot17lTaw4HndWM6y6T1FQYR4BpGXkNG7a3T8mLlV1A7Q",
-        }).then(async (currentToken) => {
-          if (currentToken) {
-            const res = await fetch(`${API_URL}/auth/token`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                token: currentToken,
-              }),
-            });
-            const data = await res.json();
-            console.log(data);
-          } else {
-            console.log(
-              "No registration token available. Request permission to generate one."
-            );
-          }
-        });
-      }
-    });
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -1,9 +1,9 @@
 import { Button } from "@mui/material";
 import { useDeviceInfo } from "../hooks";
 import MainBodyItem from "./MainBodyItem";
-import { getToken } from "firebase/messaging";
 import { API_URL } from "src/const";
-
+import { getToken } from "firebase/messaging";
+import { messaging } from "src/firebase.js";
 const MainBody = () => {
   const { data } = useDeviceInfo();
 
