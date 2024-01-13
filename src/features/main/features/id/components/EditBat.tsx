@@ -79,6 +79,7 @@ const EditBat = () => {
 
   return (
     <div className="w-full h-full border-t border-gray-300 pt-14 flex flex-col gap-12 px-8">
+      <h1 className="text-2xl font-bold text-center">알림 설정</h1>
       <h1 className="text-2xl font-bold text-center">배터리</h1>
       <div className="w-64 h-64">
         <div className="absolute left-1/2 -translate-x-1/2 -translate-y-8">

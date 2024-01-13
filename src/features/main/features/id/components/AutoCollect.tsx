@@ -12,7 +12,7 @@ import { inAndOut } from "src/utils/framer-motion.utils";
 const AutoCollect = () => {
   const [searchParams, _] = useSearchParams();
   const [ouValue, setOuValue] = useState(0);
-  const [delayValue, setDelayValue] = useState(0);
+  const [delayValue, setDelayValue] = useState<number | "">("");
   const id = searchParams.get("id");
 
   const [success, setSuccess] = useState(false);
@@ -31,11 +31,24 @@ const AutoCollect = () => {
   }, [data]);
 
   const onAddDelayValueHandler = () => {
-    setDelayValue((prev) => prev + 1);
+    setDelayValue((prev) => {
+      if (prev === "") {
+        return 1;
+      }
+      return prev + 1;
+    });
   };
 
   const onSubDelayValueHandler = () => {
-    setDelayValue((prev) => prev - 1);
+    setDelayValue((prev) => {
+      if (prev === "") {
+        return 0;
+      }
+      if (prev === 0) {
+        return 0;
+      }
+      return prev - 1;
+    });
   };
 
   const onSubmitHandler = () => {
@@ -43,7 +56,7 @@ const AutoCollect = () => {
       {
         id: data.des_idx,
         maxOu: ouValue,
-        delay: delayValue,
+        delay: delayValue === "" ? 0 : delayValue,
       },
       {
         onSuccess: () => {
@@ -72,6 +85,7 @@ const AutoCollect = () => {
         selection
       />
       <div className="px-8 flex flex-col py-4 gap-8">
+        <h1 className="text-center font-bold text-2xl">자동 포집 설정</h1>
         <h1 className="text-center font-bold text-2xl">복합악취</h1>
         <CollectSettingGraph
           setValue={setOuValue}

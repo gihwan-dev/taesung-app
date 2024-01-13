@@ -1,11 +1,19 @@
 import React from "react";
 
 const DeviceDelaySetting: React.FC<{
-  value: number;
+  value: number | "";
   onAdd: () => void;
   onSub: () => void;
-  setValue: (value: number) => void;
+  setValue: (value: number | "") => void;
 }> = ({ value, onAdd, onSub, setValue }) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (Number(e.target.value) === 0) {
+      setValue("");
+      return;
+    }
+    setValue(Number(e.target.value));
+  };
+
   return (
     <div
       className={
@@ -20,7 +28,7 @@ const DeviceDelaySetting: React.FC<{
       </button>
       <div className="bg-white px-8 py-2 rounded-lg flex flex-row items-center justify-center">
         <input
-          onChange={(e) => setValue(Number(e.target.value))}
+          onChange={onChangeHandler}
           className="w-12 border-b border-gray-300 text-center"
           type="number"
           value={value}

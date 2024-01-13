@@ -20,6 +20,7 @@ const MainBody = () => {
               headers: {
                 "Content-Type": "application/json",
               },
+              credentials: "include",
               body: JSON.stringify({
                 token: currentToken,
               }),
