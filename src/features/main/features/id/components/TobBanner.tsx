@@ -6,7 +6,7 @@ const TopBanner: React.FC<{
     <header className="w-full flex flex-row justify-between items-center list-none border border-b-gray-300">
       <li
         className={
-          `px-8 py-6 text-lg transition-all duration-500` +
+          `px-5 py-6 text-sm transition-all duration-500` +
           (selected === 0 ? " font-bold border-b-2 border-b-black" : "")
         }
         onClick={() => onClick(0)}
@@ -15,7 +15,7 @@ const TopBanner: React.FC<{
       </li>
       <li
         className={
-          `px-8 py-6 text-lg transition-all duration-500` +
+          `px-5 py-6 text-sm transition-all duration-500` +
           (selected === 1 ? " font-bold border-b-2 border-b-black" : "")
         }
         onClick={() => onClick(1)}
@@ -24,7 +24,7 @@ const TopBanner: React.FC<{
       </li>
       <li
         className={
-          `px-8 py-6 text-lg transition-all duration-500` +
+          `px-5 py-6 text-sm transition-all duration-500` +
           (selected === 2 ? " font-bold border-b-2 border-b-black" : "")
         }
         onClick={() => onClick(2)}
@@ -33,7 +33,7 @@ const TopBanner: React.FC<{
       </li>
       <li
         className={
-          `px-8 py-6 text-lg transition-all duration-500` +
+          `px-5 py-6 text-sm transition-all duration-500` +
           (selected === 3 ? " font-bold border-b-2 border-b-black" : "")
         }
         onClick={() => onClick(3)}

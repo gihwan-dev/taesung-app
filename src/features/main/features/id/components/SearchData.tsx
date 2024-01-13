@@ -58,16 +58,16 @@ const SearchData = () => {
             </div>
           </>
         ) : null}
-        <div className="flex flex-row gap-4">
-          <h4 className="ml-2 font-bold">기간</h4>
-          <div>
+        <div className="flex flex-col gap-4">
+          <h4 className="ml-2 font-bold whitespace-pre-wrap">기간</h4>
+          <div className="w-full flex flex-col">
             <input
+              className="flex-1 max-w-xs"
               onChange={(e) => setStartDate(new Date(e.target.value))}
               type="date"
             />
-          </div>
-          <div>
             <input
+              className="flex-1 max-w-xs"
               onChange={(e) => setEndDate(new Date(e.target.value))}
               type="date"
             />

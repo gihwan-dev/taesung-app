@@ -30,7 +30,7 @@ const DeviceInfo = () => {
   return (
     <motion.section
       {...fadeIn}
-      className="pt-12 w-full h-full flex flex-col items-center bg-gray-100 gap-6"
+      className="pt-12 w-full h-full flex flex-col items-center bg-gray-100 gap-6 overflow-auto"
     >
       <ul className="flex flex-col items-center w-7/12">
         <li className="flex flex-row border-b border-b-gray-200 py-4 justify-between w-full">

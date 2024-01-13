@@ -89,11 +89,11 @@ const MainPageLayout = () => {
         >
           {({ isActive }) =>
             isActive ? (
-              <HomeIcon fontSize="large" />
+              <HomeIcon fontSize="medium" />
             ) : (
               <HomeIcon
                 color="disabled"
-                fontSize="large"
+                fontSize="medium"
               />
             )
           }
@@ -104,11 +104,11 @@ const MainPageLayout = () => {
         >
           {({ isActive }) =>
             isActive ? (
-              <LocationOnIcon fontSize="large" />
+              <LocationOnIcon fontSize="medium" />
             ) : (
               <LocationOnIcon
                 color="disabled"
-                fontSize="large"
+                fontSize="medium"
               />
             )
           }
@@ -120,11 +120,11 @@ const MainPageLayout = () => {
           >
             {({ isActive }) =>
               isActive ? (
-                <NotificationsIcon fontSize="large" />
+                <NotificationsIcon fontSize="medium" />
               ) : (
                 <NotificationsIcon
                   color="disabled"
-                  fontSize="large"
+                  fontSize="medium"
                 />
               )
             }
@@ -141,11 +141,11 @@ const MainPageLayout = () => {
         >
           {({ isActive }) =>
             isActive ? (
-              <SettingsIcon fontSize="large" />
+              <SettingsIcon fontSize="medium" />
             ) : (
               <SettingsIcon
                 color="disabled"
-                fontSize="large"
+                fontSize="medium"
               />
             )
           }
