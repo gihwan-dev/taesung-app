@@ -38,7 +38,6 @@ const getDeviceCollectFetch = async (id: number) => {
 
 export const useDeviceCollect = (id: number) => {
   return useQuery({
-    refetchInterval: 1000,
     queryFn: () => getDeviceCollectFetch(id),
     queryKey: ["device", "collect", id],
   });
@@ -130,9 +129,11 @@ export const useAlertSetting = (id: string | null) => {
 };
 
 export const useUpdateCollect = () => {
+  console.log("useUpdateCollect");
   return useMutation({
     mutationFn: ({ id, type }: { id: number; type: collectFetchType }) =>
       collectFetch(id, type),
+    mutationKey: ["device", "collect"],
   });
 };
 

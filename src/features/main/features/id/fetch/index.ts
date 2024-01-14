@@ -6,9 +6,7 @@ import {
 } from "../types";
 
 export const collectFetch = (id: number, type: collectFetchType) => {
-  const targetURL = new URL(`${API_URL}/device/state/${id}`);
-  targetURL.searchParams.append("type", type);
-  return fetch(targetURL, {
+  return fetch(`${API_URL}/device/state/${id}?type=${type}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",

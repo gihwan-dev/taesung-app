@@ -5,7 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { getBatteryIcon } from "../../../utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   getCollectStatusColor,
   getCollectStatusText,
@@ -13,21 +13,16 @@ import {
 import { collectFetchType } from "../types";
 import { motion } from "framer-motion";
 import { fadeIn } from "src/utils/framer-motion.utils";
-import { useAppDispatch, useAppSelector } from "src/hooks/redux.hooks";
-import { setDeviceState } from "src/stores/device_state.slice";
+import { collectFetch } from "../fetch";
 
 const GatheringInfo = () => {
-  const [remainTime, setRemainTime] = useState<number>(0);
-
   const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
+  const [remainTime, setRemainTime] = useState(0);
 
   const params = useParams();
   const id = params.id as string;
 
-  const state = useAppSelector((state) => state.deviceState[+id]);
-  const dispatch = useAppDispatch();
-
-  const { mutate } = useUpdateCollect();
+  const { data: state, isLoading, refetch } = useDeviceState(id);
 
   const {
     data: collect,
@@ -35,16 +30,18 @@ const GatheringInfo = () => {
     isError,
   } = useDeviceCollect(state?.ds_collect);
 
-  const collectBtnHandler = (type: collectFetchType) => {
-    mutate(
-      { id: +id, type: type },
-      {
-        onSuccess: async (data) => {
-          const response = (await data.json()) as any;
-          dispatch(setDeviceState(response));
-        },
+  const collectBtnHandler = async (type: collectFetchType) => {
+    if (timer) {
+      clearInterval(timer);
+    }
+    try {
+      const response = await collectFetch(+id, type);
+      if (response.ok) {
+        refetch();
       }
-    );
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   // 경과 시간 설정하는 로직
@@ -55,9 +52,7 @@ const GatheringInfo = () => {
     if (state.ds_collect !== 1 && state.ds_collect !== 5) {
       const modifyDate = new Date(state?.mod_date);
       const curDate = new Date();
-      const remainTime = curDate.getTime() - modifyDate.getTime();
-
-      setRemainTime(remainTime);
+      setRemainTime(curDate.getTime() - modifyDate.getTime());
 
       const timerValue = setInterval(() => {
         setRemainTime((prev) => prev + 1000);
@@ -71,13 +66,13 @@ const GatheringInfo = () => {
         clearInterval(timer);
       }
     };
-  }, []);
+  }, [state, collectIsLoading]);
 
   if (isError) {
     return null;
   }
 
-  if (!state || collectIsLoading) {
+  if (!state || collectIsLoading || isLoading) {
     return null;
   }
 
@@ -129,8 +124,12 @@ const GatheringInfo = () => {
             <p className="font-bold text-white text-xl">일시 정지</p>
           ) : (
             <p className="flex flex-row gap-2 items-end">
-              <span className="relative text-xl font-bold text-white">
-                {remainTimeHour}시간 {remainTimeMinute}분 {remainTimeSecond}초
+              <span
+                id="timer"
+                className="relative text-xl font-bold text-white"
+              >
+                {remainTimeHour - 9}시간 {remainTimeMinute}분 {remainTimeSecond}
+                초
                 <span className="absolute whitespace-nowrap font-normal -right-10 bottom-0 text-xl text-white">
                   경과
                 </span>
