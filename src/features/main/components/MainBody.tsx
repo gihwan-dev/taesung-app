@@ -48,14 +48,17 @@ const MainBody = () => {
           />
         );
       })}
-      <Button
-        variant="contained"
-        color="primary"
-        className="mt-auto"
-        onClick={handlerAllowNotification}
-      >
-        알림 허용하기
-      </Button>
+      <div className="flex flex-row justify-center mt-4">
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          className="mt-auto"
+          onClick={handlerAllowNotification}
+        >
+          알림 허용하기
+        </Button>
+      </div>
     </ul>
   );
 };

@@ -21,6 +21,7 @@ import { useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "./stores/store";
 import DeviceState from "./pages/DeviceState";
+import SignUpPage from "./pages/SignUpPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
     path: "login",
     element: <LoginPage />,
   },
+  { path: "signUp", element: <SignUpPage /> },
   {
     path: "virtual",
     element: <DeviceState />,

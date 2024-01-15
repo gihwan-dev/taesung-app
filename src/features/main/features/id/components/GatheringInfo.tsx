@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useDeviceState } from "../../../hooks";
-import { useDeviceCollect, useUpdateCollect } from "../hooks";
+import { useDeviceCollect } from "../hooks";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import CropSquareIcon from "@mui/icons-material/CropSquare";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { getBatteryIcon } from "../../../utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getCollectStatusColor,
   getCollectStatusText,

@@ -1,25 +1,15 @@
 import { useState } from "react";
-import { API_URL } from "../../../const";
-import { useNavigate } from "react-router-dom";
-import GreetingUser from "./GreetingUser";
-import LoadingState from "../../../components/LoadingState";
-
-const LoginForm = () => {
+import SignUpSuccess from "./SignUpSuccess";
+import { API_URL } from "src/const";
+const SignUpForm = () => {
   const [form, setForm] = useState({
     email: "",
     password: "",
+    confirmPassword: "",
+    name: "",
   });
 
-  const navigate = useNavigate();
-
-  const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const [userName, setUserName] = useState("");
-
-  const isValidForm = () => {
-    return form.email !== "" && form.password !== "";
-  };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,53 +19,59 @@ const LoginForm = () => {
     }));
   };
 
+  const inputIsEmpty = () => {
+    return (
+      form.email === "" ||
+      form.password === "" ||
+      form.confirmPassword === "" ||
+      form.name === ""
+    );
+  };
+
+  const isValidForm = () => {
+    if (inputIsEmpty()) {
+      return false;
+    }
+
+    if (form.password !== form.confirmPassword) {
+      return false;
+    }
+    return true;
+  };
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isValidForm()) {
       alert("모든 필드를 입력해주세요.");
       return;
     }
-    setIsLoading(true);
     try {
-      const response = await fetch(`${API_URL}/auth/login`, {
+      const res = await fetch(`${API_URL}/auth`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          ...form,
+          email: form.email,
+          password: form.password,
+          name: form.name,
         }),
       });
-      if (!response.ok) {
-        throw new Error("로그인에 실패했습니다.");
-      }
-      const data = await response.json();
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("email", data.user.email);
-      localStorage.setItem("name", data.user.name);
-      setUserName(data.user.name);
-      setIsLoading(false);
-      setIsSuccess(true);
-      setTimeout(() => {
-        setIsSuccess(false);
-        navigate("/main");
-      }, 2000);
-    } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-        setIsLoading(false);
+      if (!res.ok) {
+        alert("회원가입에 실패했습니다.");
         return;
       }
-      alert("알 수 없는 에러가 발생했습니다.");
+      setIsSuccess(true);
+      return;
+    } catch (error) {
+      alert("회원가입에 실패했습니다.");
+      console.error(error);
+      return;
     }
   };
 
-  if (isLoading) {
-    return <LoadingState />;
-  }
-
   if (isSuccess) {
-    return <GreetingUser name={userName} />;
+    return <SignUpSuccess />;
   }
 
   return (
@@ -92,9 +88,23 @@ const LoginForm = () => {
       />
       <input
         className="px-2 py-4 border border-gray-300 rounded-md mb-4"
+        name="name"
+        type="text"
+        placeholder="이름"
+        onChange={onChange}
+      />
+      <input
+        className="px-2 py-4 border border-gray-300 rounded-md mb-4"
         name="password"
         type="password"
         placeholder="비밀번호"
+        onChange={onChange}
+      />
+      <input
+        className="px-2 py-4 border border-gray-300 rounded-md mb-4"
+        name="confirmPassword"
+        type="password"
+        placeholder="비밀번호 확인"
         onChange={onChange}
       />
       <button
@@ -103,13 +113,13 @@ const LoginForm = () => {
         } text-white font-bold text-lg py-3`}
         type="submit"
       >
-        로그인
+        회원가입
       </button>
       <div className="flex flex-row justify-center items-center gap-8 text-gray-500">
-        <a href="/signUp">회원가입 {">"}</a>
+        <a href="/login">로그인 {">"}</a>
       </div>
     </form>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
