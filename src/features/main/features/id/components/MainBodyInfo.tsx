@@ -21,13 +21,15 @@ const MainBodyInfo = () => {
   return (
     <motion.section
       {...fadeIn}
-      className="flex flex-col h-full overflow-auto"
+      className="flex h-full overflow-auto flex-col"
     >
       <HeadBattery batteryLevel={state?.ds_bat} />
-      <OdorLevel
-        sdMos={sensor.sd_mos}
-        sdOu={sensor.sd_ou}
-      />
+      <div className="w-full h-80">
+        <OdorLevel
+          sdMos={sensor.sd_mos}
+          sdOu={sensor.sd_ou}
+        />
+      </div>
       <OtherSensorData />
     </motion.section>
   );

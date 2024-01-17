@@ -4,7 +4,7 @@ import RightArrowIcon from "@mui/icons-material/ArrowForwardIos";
 const linkStyle = "py-3 w-full flex flex-row justify-between items-center";
 const SettingMainBody = () => {
   return (
-    <div className="w-full h-full px-8 flex flex-col gap-2 py-8 border-t border-gray-300">
+    <div className="w-full h-full overflow-hidden px-8 flex flex-col gap-2 py-8 border-t border-gray-300">
       <Link
         className={linkStyle}
         to="/main/setting/info"

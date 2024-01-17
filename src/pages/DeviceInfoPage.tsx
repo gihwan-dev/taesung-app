@@ -26,7 +26,7 @@ const DeviceInfoPage = () => {
   }
 
   return (
-    <section className="w-full h-full overflow-hidden">
+    <section className="w-full h-full pb-8 flex flex-col overflow-hidden">
       <AppBar
         returnArrow
         selection
@@ -35,7 +35,7 @@ const DeviceInfoPage = () => {
         selected={selected}
         onClick={onClickHandler}
       />
-      <div className="w-full h-full">{content}</div>
+      {content}
     </section>
   );
 };

@@ -23,7 +23,7 @@ const SensorDataList: React.FC<{
         >
           <p className="text-center">{item.di_idx}</p>
           <p className="text-center">{item.sd_ou}</p>
-          <p className="text-center">{item.sd_mos.toFixed(2)}</p>
+          <p className="text-center">{item.sd_mos.toFixed(2).toString()}</p>
           <p className="text-center text-xs my-1">
             {formatDateToKorean(item.reg_date)}
           </p>
@@ -41,7 +41,7 @@ const SensorDataList: React.FC<{
           >
             <p className="text-center">{item.di_idx}</p>
             <p className="text-center">{item.sd_ou}</p>
-            <p className="text-center">{item.sd_mos}</p>
+            <p className="text-center">{item.sd_mos.toFixed(2).toString()}</p>
             <p className="text-center text-xs my-1">
               {formatDateToKorean(item.reg_date)}
             </p>

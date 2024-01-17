@@ -78,8 +78,8 @@ const MainPageLayout = () => {
   const notificationCount = data.filter((item) => item.al_checked === 0).length;
 
   return (
-    <main className="w-screen h-screen flex flex-col box-border">
-      <div className="overflow-scroll h-full">
+    <main className="w-screen h-screen flex flex-col overflow-hidden box-border">
+      <div className="overflow-hidden w-full h-full">
         <Outlet />
       </div>
       <footer className="flex flex-shrink-0 flex-row items-center justify-evenly py-6 border border-gray-200">

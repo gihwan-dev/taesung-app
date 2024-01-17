@@ -3,7 +3,7 @@ import SettingMainBody from "src/features/setting/components/SettingMainBody";
 
 const SettingMainPage = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full overflow-hidden">
       <AppBar
         title="설정"
         returnArrow

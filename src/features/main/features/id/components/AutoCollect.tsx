@@ -84,20 +84,22 @@ const AutoCollect = () => {
         returnArrow
         selection
       />
-      <div className="px-8 flex flex-col py-4 gap-8">
+      <div className="h-full relative overflow-auto px-8 flex flex-col py-8 gap-8">
         <h1 className="text-center font-bold text-2xl">자동 포집 설정</h1>
         <h1 className="text-center font-bold text-2xl">복합악취</h1>
-        <CollectSettingGraph
-          setValue={setOuValue}
-          value={ouValue}
-        />
+        <div className="w-full h-64">
+          <CollectSettingGraph
+            setValue={setOuValue}
+            value={ouValue}
+          />
+        </div>
         <DeviceDelaySetting
           setValue={setDelayValue}
           value={delayValue}
           onAdd={onAddDelayValueHandler}
           onSub={onSubDelayValueHandler}
         />
-        <div className="w-full translate-y-16 flex flex-row gap-4">
+        <div className="w-full translate-y-16 flex flex-row gap-4 pb-8">
           <button
             onClick={() => navigate(`/main/setting`)}
             className="w-full py-2 bg-chart-inactive font-bold rounded-full"

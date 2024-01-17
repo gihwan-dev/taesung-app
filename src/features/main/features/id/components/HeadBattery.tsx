@@ -27,7 +27,7 @@ const HeadBattery: React.FC<{
   }
 
   return (
-    <div className="w-ful pt-6 flex flex-row justify-center items-center gap-4">
+    <div className="w-full pt-6 flex flex-row justify-center items-center gap-4">
       <p className="font-bold">{collectData?.cc_name}</p>
       <div className="h-12 border"></div>
       <div className="flex flex-row gap-2">

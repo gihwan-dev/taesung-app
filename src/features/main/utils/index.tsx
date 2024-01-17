@@ -6,27 +6,28 @@ import Battery60Icon from "@mui/icons-material/Battery60";
 import Battery80Icon from "@mui/icons-material/Battery80";
 import Battery90Icon from "@mui/icons-material/Battery90";
 import BatteryFullIcon from "@mui/icons-material/BatteryFull";
+import Battery0BarIcon from "@mui/icons-material/Battery0Bar";
 
 export const getBatteryIcon = (batteryLevel: number) => {
-  if (batteryLevel === 100) {
+  if (batteryLevel > 95) {
     return <BatteryFullIcon color="action" />;
   }
-  if (batteryLevel >= 90) {
+  if (batteryLevel > 85) {
     return <Battery90Icon color="action" />;
   }
-  if (batteryLevel >= 80) {
+  if (batteryLevel > 75) {
     return <Battery80Icon color="action" />;
   }
-  if (batteryLevel >= 60) {
+  if (batteryLevel > 55) {
     return <Battery60Icon color="action" />;
   }
-  if (batteryLevel >= 50) {
+  if (batteryLevel > 45) {
     return <Battery50Icon color="action" />;
   }
-  if (batteryLevel >= 30) {
+  if (batteryLevel > 25) {
     return <Battery30Icon color="action" />;
   }
-  if (batteryLevel >= 20) {
+  if (batteryLevel >= 0) {
     return <Battery20Icon color="action" />;
   }
 };

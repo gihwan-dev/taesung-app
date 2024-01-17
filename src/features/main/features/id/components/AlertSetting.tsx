@@ -3,13 +3,15 @@ import AppBar from "src/components/AppBar";
 
 const AlertSetting = () => {
   return (
-    <div className="w-full flex flex-col h-full">
+    <div className="w-full flex h-full flex-col overflow-hidden">
       <AppBar
         returnArrow
         selection={true}
       />
       <hr />
-      <Outlet />
+      <div className="w-full h-full overflow-auto">
+        <Outlet />
+      </div>
     </div>
   );
 };

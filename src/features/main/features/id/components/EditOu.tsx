@@ -75,7 +75,7 @@ const EditOu: React.FC<{}> = () => {
   };
 
   return (
-    <div className="w-full h-full border-t border-gray-300 pt-14 flex flex-col gap-12 px-8">
+    <div className="w-full relative border-t border-gray-300 pt-8 pb-8 flex flex-col gap-8 px-8">
       <h1 className="text-2xl font-bold text-center">알림 설정</h1>
       <h1 className="text-2xl font-bold text-center">복합악취</h1>
       <div className="w-64 h-64">
