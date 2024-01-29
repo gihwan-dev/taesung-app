@@ -30,8 +30,8 @@ const NotificationPage = () => {
   };
 
   return (
-    <section className="h-full w-full overflow-hidden bg-gray-100">
-      <div className="py-4 bg-gray-100">
+    <section className="h-full w-full overflow-hidden">
+      <div className="py-4 ">
         <h1 className="text-center text-lg">알림</h1>
       </div>
       <NotificationBanner

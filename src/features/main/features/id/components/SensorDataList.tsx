@@ -53,13 +53,13 @@ const SensorDataList: React.FC<{
 
   return (
     <>
-      <div className="w-full grid grid-cols-4 list-none py-4 border border-gray-200">
-        <li className="text-center font-semibold">기기번호</li>
-        <li className="text-center font-semibold">OU</li>
-        <li className="text-center font-semibold">MOS</li>
-        <li className="text-center font-semibold">날짜</li>
+      <div className="w-full grid grid-cols-4 list-none py-3 border border-gray-200">
+        <li className="text-center font-semibold text-sm">기기번호</li>
+        <li className="text-center font-semibold text-sm">OU</li>
+        <li className="text-center font-semibold text-sm">MOS</li>
+        <li className="text-center font-semibold text-sm">날짜</li>
       </div>
-      <div className="w-full bg-gray-100 py-4 flex flex-col gap-4 h-full overflow-y-scroll">
+      <div className="w-full text-sm py-4 flex flex-col gap-4 h-full overflow-y-scroll">
         {content}
       </div>
     </>

@@ -62,11 +62,11 @@ export const AlarmDataList: React.FC<{
 
   return (
     <>
-      <div className="w-full grid grid-cols-2 list-none py-4 border border-gray-200">
-        <li className="text-center font-semibold">알람 종류</li>
-        <li className="text-center font-semibold">시간</li>
+      <div className="w-full grid grid-cols-2 list-none py-3 border border-gray-200">
+        <li className="text-center font-semibold text-sm">알람 종류</li>
+        <li className="text-center font-semibold text-sm">시간</li>
       </div>
-      <div className="w-full bg-gray-100 py-4 flex flex-col gap-4 h-full overflow-y-scroll">
+      <div className="w-full text-sm py-4 flex flex-col gap-4 h-full overflow-y-scroll">
         {content}
       </div>
     </>
