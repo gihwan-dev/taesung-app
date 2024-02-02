@@ -1,41 +1,7 @@
-import { Button } from "@mui/material";
 import { useDeviceInfo } from "../hooks";
 import MainBodyItem from "./MainBodyItem";
-import { API_URL } from "src/const";
-import { getToken } from "firebase/messaging";
-import { messaging } from "src/firebase.js";
 const MainBody = () => {
   const { data } = useDeviceInfo();
-
-  const handlerAllowNotification = () => {
-    Notification.requestPermission().then((permission) => {
-      if (permission === "granted") {
-        getToken(messaging, {
-          vapidKey:
-            "BCXtbBSDudugWghHk9Jyk5HYf5prx26QvtLt65pesLYot17lTaw4HndWM6y6T1FQYR4BpGXkNG7a3T8mLlV1A7Q",
-        }).then(async (currentToken) => {
-          if (currentToken) {
-            const res = await fetch(`${API_URL}/auth/token`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              credentials: "include",
-              body: JSON.stringify({
-                token: currentToken,
-              }),
-            });
-            const data = await res.json();
-            console.log(data);
-          } else {
-            console.log(
-              "No registration token available. Request permission to generate one."
-            );
-          }
-        });
-      }
-    });
-  };
 
   return (
     <ul className="flex flex-col gap-4 h-full px-6 box-border">
@@ -48,17 +14,6 @@ const MainBody = () => {
           />
         );
       })}
-      <div className="flex flex-row justify-center mt-4">
-        <Button
-          variant="contained"
-          size="large"
-          color="primary"
-          className="mt-auto"
-          onClick={handlerAllowNotification}
-        >
-          알림 허용하기
-        </Button>
-      </div>
     </ul>
   );
 };

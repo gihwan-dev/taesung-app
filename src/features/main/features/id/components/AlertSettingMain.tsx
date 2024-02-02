@@ -4,6 +4,10 @@ import { useAlertSetting, useUpdateAlarmData } from "../hooks";
 import ColorFilter from "src/assets/icon/ionicons/filled/ColorFilter";
 import BatteryHalf from "src/assets/icon/ionicons/filled/BatteryHalf";
 import RightArrowIcon from "@mui/icons-material/ArrowForwardIos";
+import { Button } from "@mui/material";
+import { API_URL } from "src/const";
+import { getToken } from "firebase/messaging";
+import { messaging } from "src/firebase.js";
 
 const AlertSettingMain = () => {
   const [searchParams, _] = useSearchParams();
@@ -66,6 +70,36 @@ const AlertSettingMain = () => {
     );
   };
 
+  const handlerAllowNotification = () => {
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        getToken(messaging, {
+          vapidKey:
+            "BCXtbBSDudugWghHk9Jyk5HYf5prx26QvtLt65pesLYot17lTaw4HndWM6y6T1FQYR4BpGXkNG7a3T8mLlV1A7Q",
+        }).then(async (currentToken) => {
+          if (currentToken) {
+            const res = await fetch(`${API_URL}/auth/token`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              body: JSON.stringify({
+                token: currentToken,
+              }),
+            });
+            const data = await res.json();
+            console.log(data);
+          } else {
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+          }
+        });
+      }
+    });
+  };
+
   if (isLoading || isError) {
     return null;
   }
@@ -114,6 +148,15 @@ const AlertSettingMain = () => {
       <hr />
       <div className="flex flex-col gap-4 py-12 px-8">
         <h1 className="font-bold text-center text-lg">Push 알림 설정</h1>
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          className="mt-auto"
+          onClick={handlerAllowNotification}
+        >
+          알림 허용하기
+        </Button>
         <ul className="w-full flex flex-col gap-1">
           <div className="w-full flex flex-row justify-between px-2 py-2 bg-white rounded-xl items-center">
             <label>포집알림</label>

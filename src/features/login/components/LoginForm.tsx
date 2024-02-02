@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import GreetingUser from "./GreetingUser";
 import LoadingState from "../../../components/LoadingState";
 
+import { getToken } from "firebase/messaging";
+import { messaging } from "src/firebase.js";
+
 const LoginForm = () => {
   const [form, setForm] = useState({
     email: "",
@@ -27,6 +30,37 @@ const LoginForm = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handlerAllowNotification = () => {
+    console.log("알림을 허용해 주세요.");
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        getToken(messaging, {
+          vapidKey:
+            "BCXtbBSDudugWghHk9Jyk5HYf5prx26QvtLt65pesLYot17lTaw4HndWM6y6T1FQYR4BpGXkNG7a3T8mLlV1A7Q",
+        }).then(async (currentToken) => {
+          if (currentToken) {
+            const res = await fetch(`${API_URL}/auth/token`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              credentials: "include",
+              body: JSON.stringify({
+                token: currentToken,
+              }),
+            });
+            const data = await res.json();
+            console.log(data);
+          } else {
+            console.log(
+              "No registration token available. Request permission to generate one."
+            );
+          }
+        });
+      }
+    });
   };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -59,6 +93,7 @@ const LoginForm = () => {
       setTimeout(() => {
         setIsSuccess(false);
         navigate("/main");
+        handlerAllowNotification();
       }, 2000);
     } catch (error) {
       if (error instanceof Error) {
